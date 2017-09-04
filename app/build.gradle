@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion global_compileSdkVersion
+    buildToolsVersion global_buildToolsVersion
+    defaultConfig {
+        applicationId "ru.skiff.finance"
+
+        minSdkVersion global_minSdkVersion
+        targetSdkVersion global_targetVersion
+
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile "com.android.support:appcompat-v7:${support}"
+    compile "com.android.support:design:${support}"
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.google.android.gms:play-services-vision:11.0.4'
+
+    // rx
+    compile "io.reactivex.rxjava2:rxjava:${rxjava}"
+    compile "io.reactivex.rxjava2:rxandroid:${rxandroid}"
+
+    // mvp
+    compile "com.arello-mobile:moxy:${moxy}"
+    compile "com.arello-mobile:moxy-app-compat:${moxy}"
+    kapt "com.arello-mobile:moxy-compiler:${moxy}"
+
+    // di
+    compile "com.google.dagger:dagger:${dagger}"
+    kapt "com.google.dagger:dagger-compiler:${dagger}"
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
+
+repositories {
+    mavenCentral()
+}
